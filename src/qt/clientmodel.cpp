@@ -75,6 +75,15 @@ QDateTime ClientModel::getLastBlockDate() const
         return QDateTime::fromTime_t(Params().GenesisBlock().nTime); // Genesis block's time of current network
 }
 
+long ClientModel::getMempoolSize() const
+{
+    return mempool.size();
+}
+
+size_t ClientModel::getMempoolDynamicUsage() const
+{
+    return mempool.DynamicMemoryUsage();
+}
 
 void ClientModel::updateTimer()
 {
@@ -96,6 +105,8 @@ void ClientModel::updateTimer()
     }
 
     emit bytesChanged(getTotalBytesRecv(), getTotalBytesSent());
+
+    emit mempoolSizeChanged(getMempoolSize(), getMempoolDynamicUsage());
 }
 
 void ClientModel::updateNumConnections(int numConnections)

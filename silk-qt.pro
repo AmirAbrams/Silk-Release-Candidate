@@ -246,7 +246,8 @@ HEADERS += src/qt/silkgui.h \
     src/clientversion.h \
     src/threadsafety.h \
     src/tinyformat.h \
-    src/utilstrencodings.h
+    src/utilstrencodings.h \
+    src/memusage.h
 
 SOURCES += src/qt/silk.cpp src/qt/silkgui.cpp \
     src/qt/transactiontablemodel.cpp \

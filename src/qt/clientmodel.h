@@ -35,6 +35,11 @@ public:
 
     QDateTime getLastBlockDate() const;
 
+    //! Return number of transactions in the mempool
+    long getMempoolSize() const;
+    //! Return the dynamic memory usage of the mempool
+    size_t getMempoolDynamicUsage() const;
+
     //! Return true if client connected to testnet
     bool isTestNet() const;
     //! Return true if core is doing initial block download
@@ -74,7 +79,8 @@ signals:
 
     // Show progress dialog e.g. for verifychain
     void showProgress(const QString &title, int nProgress);
-
+    // Updates admin console
+    void mempoolSizeChanged(long count, size_t mempoolSizeInBytes);
 public slots:
     void updateTimer();
     void updateNumConnections(int numConnections);

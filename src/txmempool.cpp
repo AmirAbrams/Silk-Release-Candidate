@@ -7,6 +7,7 @@
 #include "txmempool.h"
 #include "core.h"
 #include "main.h" // for CTransaction
+#include "memusage.h"
 
 using namespace std;
 
@@ -105,4 +106,11 @@ bool CTxMemPool::lookup(uint256 hash, CTransaction& result) const
     if (i == mapTx.end()) return false;
     result = i->second;
     return true;
+}
+
+size_t CTxMemPool::DynamicMemoryUsage() const {
+    LOCK(cs);
+    // TODO (Amir): Verify this is returning the correct value.
+    // Estimate the overhead of mapTx to be 12 pointers + an allocation, as no exact formula for boost::multi_index_contained is implemented.
+    return memusage::MallocUsage(sizeof(CTxMemPoolEntry) + 12 * sizeof(void*)) * mapTx.size() + memusage::DynamicUsage(mapNextTx) + memusage::DynamicUsage(mapDeltas);
 }

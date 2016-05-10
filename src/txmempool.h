@@ -52,6 +52,8 @@ public:
     }
 
     bool lookup(uint256 hash, CTransaction& result) const;
+
+    size_t DynamicMemoryUsage() const;
 };
 
 #endif /* SILK_TXMEMPOOL_H */

@@ -234,7 +234,7 @@ void OverviewPage::setWalletModel(WalletModel *model)
         updateWatchOnlyLabels(model->haveWatchOnly());    
     }
 
-    // update the display unit, to not use the default ("BTC")
+    // update the display unit, to not use the default ("SLK")
     updateDisplayUnit();
 }
 
